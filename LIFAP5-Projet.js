@@ -21,7 +21,7 @@ function State(users = [], todos = [], filters = [], sort = "NONE"){
   this.sort   = sort;
 
   //returns the JSON object of a user
-  this.get_user_info = (user_id) => {    
+  this.get_user_info = (user_id) => {
     return this.users.find((o)=>o['_id']===user_id);
   };
 

@@ -10,54 +10,129 @@
   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
   <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="css/style.css" >
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <!-- script de base pour le projet -->
-  <script src="./LIFAP5-Projet.js" type="text/javascript"></script> 
+  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+  <script src="./LIFAP5-Projet.js" type="text/javascript"></script>
 </head>
 <body>
-<nav class="navbar navbar-default">
+<!--<nav class="navbar  navbar-fixed-left">
   <div class="container-fluid">
     <div class="navbar-header">
       <div class="navbar-brand">
         <img id="brand-logo" alt="Brand" class="brand" src="./logo.svg">
       </div>
       <p class="navbar-text">MyTODOS Manager</p>
-      
+
       <ul class="nav navbar-nav">
       </ul>
 
     </div>
   </div>
-</nav>
+</nav>-->
+<div class="sidebar-wrapper menu">
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand"> <a class="navbar-brand img1" href="#"><img src="img/logo.png" ></a></li>
+
+  <!-- <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+     <ul class="dropdown-menu" role="menu">
+      <li><a href="#">Sub Menu1</a></li>
+      <li><a href="#">Sub Menu2</a></li>
+      <li><a href="#">Sub Menu3</a></li>
+      <li class="divider"></li>
+      <li><a href="#">Sub Menu4</a></li>
+      <li><a href="#">Sub Menu5</a></li>
+     </ul>
+   </li>
+   <li><a href="#">Link2</a></li>
+   <li><a href="#">Link3</a></li>
+   <li><a href="#">Link4</a></li>
+   <li><a href="#">Link5</a></li>-->
+   <li><a class="options" href="#"><img src="img/me.png"></a></li>
+   <li><a class="options" href="#"><img src="img/others.png" ></a></li>
+
+
+ </ul>
+</div>
 
 <!--- -->
 
 
 <!-- -->
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-2 sidebar">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6 col-md-2 no-float" id = "second-menu">
+      <ul class = "sidebar-nav">
+        <li class="sidebar-brand">
+          <div class=" img-avatar">
+            <img src="img/avatar.png">
+            <div class="info">
+              <p class="name">Romuald</p>
+              <p class="email">romuald.thion@univ-lyon1.fr</p>
+            </div>
+          </div>
+        </li>
+        <li class = "nav-item">
+          <a class="nav-link" href="#">
+            <div class=" btn-lg" data-toggle="modal" data-target="#uploadModal"><i class="fal fa-plus-square"><p>Add item</p></i></div>
+          </a>
+        </li>
+        <li class = "nav-item">
+        <div class="filter">
+          <div  role="tab" id="headingOne">
+
+              <a role="button" class="nav-link" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed">
+                <div class=" btn-lg"> <i class="fal fa-filter"></i><p> Filter </div></a>
+              </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi molestiae dolorum, soluta temporibus vero perferendis quo odit eaque cum fugiat nihil earum error vitae libero nostrum sed ipsam, beatae ea.
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class = "nav-item">
+      <div class="sort">
+        <div  role="tab" id="headingOne">
+
+            <a role="button" class="nav-link" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed">
+              <div class=" btn-lg"><i class="fal fa-sort"></i><p> Sort </div></a>
+            </a>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi molestiae dolorum, soluta temporibus vero perferendis quo odit eaque cum fugiat nihil earum error vitae libero nostrum sed ipsam, beatae ea.
+          </div>
+        </div>
+      </div>
+    </li>
+      </ul>
+    </div>
+        <!-- <div class="col-sm-2 ">
         <ul id="panel-menu" class="nav nav-sidebar list-group">
-          <!-- <li id="album-all" class="list-group-item active">All photos</li>
+          <li id="album-all" class="list-group-item active">All photos</li>
           <li id="album-keyboard" class="list-group-item">Keyboard</li>
           <li id="album-composition" class="list-group-item">Composition</li>
-          <li id="album-2017" class="list-group-item">2017</li> -->
-        </ul>
+          <li id="album-2017" class="list-group-item">2017</li>
+        </ul>-->
 
 
         <!-- Modal create -->
 
-        <hr>
+    <!--    <hr> -->
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#resetModal">Reset</button>
-
+      <!--  <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#resetModal">Reset</button>
+-->
         <!-- Modal reset -->
-        <div id="resetModal" class="modal fade" role="dialog">
+        <!--<div id="resetModal" class="modal fade" role="dialog">
           <form class="modal-content" id="reset-form" enctype="multipart/form-data">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">×</button>
@@ -68,23 +143,33 @@
             </div>
           </form>
         </div>
-      </div> <!-- PANEL col-sm-3 sidebar -->
+      </div>--> <!-- PANEL col-sm-3 sidebar -->
 
       <div class="col-sm-5 main">
-        <h1 class="page-header">Mes TODOS</h1>
-        <div id="panel-my-todos">
+        <h1 class="page-header">To do list</h1>
+        <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg" placeholder="Search..." />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                          <i class="fal fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        <!-- <div id="panel-my-todos"> -->
           <!--<img src="./img/0056.jpg"  class="img-responsive" alt="Generic placeholder thumbnail"> -->
 
-          <ul>
+          <!-- <ul>
             <li><h5>Courses pot de l'association</h5>
               <span class="text-muted">2018-04-14 DONE <a href="mailto:nicolas@todo.com">nicolas</a>, <a href="mailto:manu@todo.com">manu</a></span></li>
             <li><h5>TODO 2</h5>
               <span class="text-muted">2018-04-14 DONE <a href="mailto:nicolas@todo.com">nicolas</a></li></span></li>
               <li>...</li>
-          </ul>
+          </ul> -->
 
          <!-- Trigger the modal with a button -->
-          <button type="button" class="btn btn-info pull-right btn-lg" data-toggle="modal" data-target="#uploadModal">+</button>
+          <!-- <button type="button" class="btn btn-info pull-right btn-lg" data-toggle="modal" data-target="#uploadModal">+</button> -->
 
           <!-- Modal -->
           <div id="uploadModal" class="modal fade" role="dialog" style="display: none;">
@@ -118,11 +203,140 @@
                   </div>
                 </form>
             </div>
-          </div> 
-          
-        </div> <!-- panel mytodos-->
-      </div><!--"col-sm-5 main"-->
+          </div>
 
+        </div> <!-- panel mytodos-->
+      <!--</div>--><!--"col-sm-5 main"-->
+      <div class="col-sm-7"></div>
+      <div id="panel-my-todos">
+        <div class="col-md-3">
+          <div class="todos">
+            <div class="titile_todo"><p>TO DO</p></div>
+            <ul class="list-group">
+              <li class="list-group-item">Cras justo odio
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+              <li class="list-group-item">Dapibus ac facilisis in
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+              <li class="list-group-item">Morbi leo risus
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+              <li class="list-group-item">Porta ac consectetur ac
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+              <li class="list-group-item">Vestibulum at eros
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+            </ul>
+        </div>
+      </div>
+        <div class="col-md-3">
+          <div class="todos">
+            <div class="titile_todo"><p>IN PROGRESS</p></div>
+            <ul class="list-group">
+              <li class="list-group-item">Cras justo odio
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+              <li class="list-group-item">Dapibus ac facilisis in
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+              <li class="list-group-item">Morbi leo risus
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+              <li class="list-group-item">Porta ac consectetur ac
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+              <li class="list-group-item">Vestibulum at eros
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+            </ul>
+        </div>
+        </div>
+        <div class="col-md-3">
+          <div class="todos">
+            <div class="titile_todo"><p>DONE</p></div>
+            <ul class="list-group">
+              <li class="list-group-item">Cras justo odio
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+              <li class="list-group-item">Dapibus ac facilisis in
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+              <li class="list-group-item">Morbi leo risus
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+              <li class="list-group-item">Porta ac consectetur ac
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+              <li class="list-group-item">Vestibulum at eros
+                <div class="item-option">
+                  <i class="fal fa-arrows-alt"></i>
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-alt"></i>
+                </div>
+              </li>
+            </ul>
+        </div>
+        </div>
+      </div>
+<!--
       <div class="col-sm-5 main">
         <h1 class="page-header">TODOS mentionnés</h1>
         <div id="panel-my-todos">
@@ -133,9 +347,9 @@
               <span class="text-muted">2018-04-14 DONE <a href="mailto:nicolas@todo.com">nicolas</a></li></span></li>
               <li>...</li>
           </ul>
-          
-        </div> <!-- panel mytodos-->
-      </div><!--"col-sm-5 main"-->
+
+        </div> panel mytodos
+      </div> --> <!--"col-sm-5 main"-->
 
     </div><!-- row -->
   </div><!--container-fluid-->
