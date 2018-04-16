@@ -213,7 +213,7 @@
           <div class="todos">
             <div class="titile_todo"><p>TO DO</p></div>
             <ul class="list-group">
-              <li class="list-group-item">Cras justo odio
+              <li class="list-group-item" id = "todo1">Cras justo odio
                 <div class="item-option">
                   <i class="fal fa-arrows-alt"></i>
                   <i class="fas fa-edit"></i>
@@ -336,8 +336,7 @@
         </div>
         </div>
       </div>
-<!--
-      <div class="col-sm-5 main">
+<!--<div class="col-sm-5 main">
         <h1 class="page-header">TODOS mentionnés</h1>
         <div id="panel-my-todos">
           <ul>
@@ -353,5 +352,21 @@
 
     </div><!-- row -->
   </div><!--container-fluid-->
+  <div id="test">test</div>
 </body>
 </html>
+
+<script>
+/*get_local_users()
+.then((result) => {
+  result = JSON.parse(result);
+  console.log(result[0]);
+  $("#test").text(result[0]["_id"]);
+})*/
+get_local_todos()
+.then((result) => {
+  result = JSON.parse(result);
+  console.log(result[0]);
+  $("#todo1").text(result[0]["title"]);
+});
+</script>
