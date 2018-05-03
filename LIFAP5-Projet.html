@@ -89,13 +89,18 @@
           <div  role="tab" id="headingOne">
 
               <a role="button" class="nav-link" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed">
-                <div class=" btn-lg"> <i class="fal fa-filter"></i><p> Filter </div></a>
+                <div class=" btn-lg"> <i class="fal fa-filter"></i><p> Filter </p></div></a>
               </a>
           </div>
           <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi molestiae dolorum, soluta temporibus vero perferendis quo odit eaque cum fugiat nihil earum error vitae libero nostrum sed ipsam, beatae ea.
-            </div>
+            <a role="button" class="nav-link" onclick='showTodo()'>
+					<div class=" btn-lg"><span class="glyphicon glyphicon-bookmark"></span><p> Todo </p></div></a>
+			<a role="button" class="nav-link" onclick="showDoing()">
+					<div class=" btn-lg"><span class="glyphicon glyphicon-refresh"></span><p> Doing </div></a>
+			<a role="button" class="nav-link" onclick="showDone()">
+					<div class=" btn-lg"><span class="glyphicon glyphicon-check"></span><p> Done </div></a>
+			</div>
           </div>
         </div>
       </li>
@@ -103,13 +108,15 @@
       <div class="sort">
         <div  role="tab" id="headingOne">
 
-            <a role="button" class="nav-link" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed">
+            <a role="button" class="nav-link" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed">
               <div class=" btn-lg"><i class="fal fa-sort"></i><p> Sort </div></a>
             </a>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
           <div class="panel-body">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi molestiae dolorum, soluta temporibus vero perferendis quo odit eaque cum fugiat nihil earum error vitae libero nostrum sed ipsam, beatae ea.
+            <a role="button" class="nav-link" >
+              <div class=" btn-lg"><p> Your Todo </div></a>
+            </a>
           </div>
         </div>
       </div>
@@ -187,19 +194,59 @@
                     </div>
                     <div class="form-group">
                       <label for="upload-mentioned">Mentioned users:</label>
-                      <input class="form-control" id="upload-albums" name="albums" type="text">
+                      <input class="form-control" id="upload-mentioned" name="albums" type="text">
                     </div>
                     <div class="form-group">
                       <label for="upload-deadline">Deadline:</label>
-                      <input class="form-control" id="upload-albums" name="albums" type="text">
+                      <input class="form-control" id="upload-deadline" name="albums" type="text">
                     </div>
                     <div class="form-group">
-                      <label for="upload-state">State:</label>
-                      <input class="form-control" id="upload-albums" name="albums" type="text">
+						<label for="upload-state">State:</label>
+						<select class="form-control" id="upload-state" >
+						<option value="Todo">Todo</option>
+						<option value="Doing">Doing</option>
+						<option value="Done">Done</option>
+						</select>
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <input class="btn btn-default" id="upload-button" data-dismiss="modal" name="submit" value="Upload" type="button">
+                    <input class="btn btn-default" id="upload-button" onclick="addFunction()" data-dismiss="modal" name="submit" value="Upload" type="button">
+                  </div>
+                </form>
+            </div>
+          </div>
+          <div id="modifieModal" class="modal fade" role="dialog" style="display: none;">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+                <form class="modal-content" id="upload-form" enctype="multipart/form-data">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">modify  TODO</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="upload-desc2">Description:</label>
+                      <input class="form-control" id="upload-desc2" name="desc" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="upload-mentioned2">Mentioned users:</label>
+                      <input class="form-control" id="upload-mentioned2" name="albums" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="upload-deadline2">Deadline:</label>
+                      <input class="form-control" id="upload-deadline2" name="albums" type="text">
+                    </div>
+                    <div class="form-group">
+						<label for="upload-state2">State:</label>
+						<select class="form-control" id="upload-state2" >
+						<option value="Todo">Todo</option>
+						<option value="Doing">Doing</option>
+						<option value="Done">Done</option>
+						</select>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <input class="btn btn-default" id="upload-button" onclick="valide()" data-dismiss="modal" name="submit" value="modifie" type="button">
                   </div>
                 </form>
             </div>
@@ -209,134 +256,145 @@
       <!--</div>--><!--"col-sm-5 main"-->
       <div class="col-sm-7"></div>
       <div id="panel-my-todos">
-        <div class="col-md-3">
-          <div class="todos">
-            <div class="titile_todo"><p>TO DO</p></div>
-            <ul class="list-group">
-              <li class="list-group-item" id = "todo1">Cras justo odio
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-              <li class="list-group-item">Dapibus ac facilisis in
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-              <li class="list-group-item">Morbi leo risus
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-              <li class="list-group-item">Porta ac consectetur ac
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-              <li class="list-group-item">Vestibulum at eros
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-            </ul>
-        </div>
+		<div id="TodoId">
+			<div class="col-md-3">
+			  <div class="todos">
+				<div class="titile_todo"><p>TO DO</p></div>
+				<ul id="listTodo" class="list-group">
+				  <li id ="todo1" class="list-group-item">Cras justo odio
+					<div class="item-option">
+					  <a role="button"  class="nav-link" data-toggle="collapse" href="#collapsetree" aria-expanded="true" aria-controls="collapsetree" class="trigger collapsed"><i class="fal fa-arrows-alt"></i></a>
+					  <a role="button" class="nav-link" onclick='editTodo()'><i class="fas fa-edit"></i></a>
+					  <a role="button" class="nav-link" onclick='DeleteTodo()'><i class="fas fa-trash-alt"></i></a>
+            <div id="collapsetree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <p id=mentionedUsers>test</p>
+              <p>test</p>
+            </div>
+					</div>
+				  </li>
+				  <li class="list-group-item">Dapibus ac facilisis in
+					<div class="item-option">
+					  <a role="button" class="nav-link" onclick='informtodo'><i class="fal fa-arrows-alt"></i></a>
+					  <a role="button" class="nav-link" onclick='editTodo()'><i class="fas fa-edit"></i></a>
+					  <a role="button" class="nav-link" onclick='DeleteTodo()'><i class="fas fa-trash-alt"></i></a>
+					</div>
+				  </li>
+				  <li class="list-group-item">Morbi leo risus
+					<div class="item-option">
+					  <a role="button" class="nav-link" onclick='informtodo'><i class="fal fa-arrows-alt"></i></a>
+					  <a role="button" class="nav-link" onclick='editTodo()'><i class="fas fa-edit"></i></a>
+					  <a role="button" class="nav-link" onclick='DeleteTodo()'><i class="fas fa-trash-alt"></i></a>
+					</div>
+				  </li>
+				  <li class="list-group-item">Porta ac consectetur ac
+					<div class="item-option">
+					  <a role="button" class="nav-link" onclick='informtodo'><i class="fal fa-arrows-alt"></i></a>
+					  <a role="button" class="nav-link" onclick='editTodo()'><i class="fas fa-edit"></i></a>
+					  <a role="button" class="nav-link" onclick='DeleteTodo()'><i class="fas fa-trash-alt"></i></a>
+					</div>
+				  </li>
+				  <li class="list-group-item">Vestibulum at eros
+					<div class="item-option">
+					  <a role="button" class="nav-link" onclick='informtodo'><i class="fal fa-arrows-alt"></i></a>
+					  <a role="button" class="nav-link" onclick='editTodo()'><i class="fas fa-edit"></i></a>
+					  <a role="button" class="nav-link" onclick='DeleteTodo()'><i class="fas fa-trash-alt"></i></a>
+					</div>
+				  </li>
+				</ul>
+			</div>
+		  </div>
+		</div>
+		<div id="DoingId">
+			<div class="col-md-3">
+				  <div class="todos">
+					<div class="titile_todo"><p>IN PROGRESS</p></div>
+					<ul id="listDoing" class="list-group">
+					  <li class="list-group-item">Cras justo odio
+						<div class="item-option">
+							<a role="button" class="nav-link" onclick='informtodo'><i class="fal fa-arrows-alt"></i></a>
+							<a role="button" class="nav-link" onclick='editTodo()'><i class="fas fa-edit"></i></a>
+							<a role="button" class="nav-link" onclick='DeleteTodo()'><i class="fas fa-trash-alt"></i></a>
+						</div>
+					  </li>
+					  <li class="list-group-item">Dapibus ac facilisis in
+						<div class="item-option">
+							<a role="button" class="nav-link" onclick='informtodo'><i class="fal fa-arrows-alt"></i></a>
+							<a role="button" class="nav-link" onclick='editTodo()'><i class="fas fa-edit"></i></a>
+							<a role="button" class="nav-link" onclick='DeleteTodo()'><i class="fas fa-trash-alt"></i></a>
+						</div>
+					  </li>
+					  <li class="list-group-item">Morbi leo risus
+						<div class="item-option">
+						  <i class="fal fa-arrows-alt"></i>
+						  <i class="fas fa-edit"></i>
+						  <i class="fas fa-trash-alt"></i>
+						</div>
+					  </li>
+					  <li class="list-group-item">Porta ac consectetur ac
+						<div class="item-option">
+						  <i class="fal fa-arrows-alt"></i>
+						  <i class="fas fa-edit"></i>
+						  <i class="fas fa-trash-alt"></i>
+						</div>
+					  </li>
+					  <li class="list-group-item">Vestibulum at eros
+						<div class="item-option">
+						  <i class="fal fa-arrows-alt"></i>
+						  <i class="fas fa-edit"></i>
+						  <i class="fas fa-trash-alt"></i>
+						</div>
+					  </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="DoneId">
+				<div class="col-md-3">
+				  <div class="todos">
+					<div class="titile_todo"><p>DONE</p></div>
+					<ul id="listDone" class="list-group">
+					  <li class="list-group-item">Cras justo odio
+						<div class="item-option">
+						  <i class="fal fa-arrows-alt"></i>
+						  <i class="fas fa-edit"></i>
+						  <i class="fas fa-trash-alt"></i>
+						</div>
+					  </li>
+					  <li class="list-group-item">Dapibus ac facilisis in
+						<div class="item-option">
+						  <i class="fal fa-arrows-alt"></i>
+						  <i class="fas fa-edit"></i>
+						  <i class="fas fa-trash-alt"></i>
+						</div>
+					  </li>
+					  <li class="list-group-item">Morbi leo risus
+						<div class="item-option">
+						  <i class="fal fa-arrows-alt"></i>
+						  <i class="fas fa-edit"></i>
+						  <i class="fas fa-trash-alt"></i>
+						</div>
+					  </li>
+					  <li class="list-group-item">Porta ac consectetur ac
+						<div class="item-option">
+						  <i class="fal fa-arrows-alt"></i>
+						  <i class="fas fa-edit"></i>
+						  <i class="fas fa-trash-alt"></i>
+						</div>
+					  </li>
+					  <li class="list-group-item">Vestibulum at eros
+						<div class="item-option">
+						  <i class="fal fa-arrows-alt"></i>
+						  <i class="fas fa-edit"></i>
+						  <i class="fas fa-trash-alt"></i>
+						</div>
+					  </li>
+					</ul>
+				</div>
+			</div>
+		</div>
       </div>
-        <div class="col-md-3">
-          <div class="todos">
-            <div class="titile_todo"><p>IN PROGRESS</p></div>
-            <ul class="list-group">
-              <li class="list-group-item">Cras justo odio
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-              <li class="list-group-item">Dapibus ac facilisis in
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-              <li class="list-group-item">Morbi leo risus
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-              <li class="list-group-item">Porta ac consectetur ac
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-              <li class="list-group-item">Vestibulum at eros
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-            </ul>
-        </div>
-        </div>
-        <div class="col-md-3">
-          <div class="todos">
-            <div class="titile_todo"><p>DONE</p></div>
-            <ul class="list-group">
-              <li class="list-group-item">Cras justo odio
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-              <li class="list-group-item">Dapibus ac facilisis in
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-              <li class="list-group-item">Morbi leo risus
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-              <li class="list-group-item">Porta ac consectetur ac
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-              <li class="list-group-item">Vestibulum at eros
-                <div class="item-option">
-                  <i class="fal fa-arrows-alt"></i>
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-alt"></i>
-                </div>
-              </li>
-            </ul>
-        </div>
-        </div>
-      </div>
-<!--<div class="col-sm-5 main">
+<!--
+      <div class="col-sm-5 main">
         <h1 class="page-header">TODOS mentionnés</h1>
         <div id="panel-my-todos">
           <ul>
@@ -352,21 +410,5 @@
 
     </div><!-- row -->
   </div><!--container-fluid-->
-  <div id="test">test</div>
 </body>
 </html>
-
-<script>
-/*get_local_users()
-.then((result) => {
-  result = JSON.parse(result);
-  console.log(result[0]);
-  $("#test").text(result[0]["_id"]);
-})*/
-get_local_todos()
-.then((result) => {
-  result = JSON.parse(result);
-  console.log(result[0]);
-  $("#todo1").text(result[0]["title"]);
-});
-</script>

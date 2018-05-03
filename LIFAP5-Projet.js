@@ -5,11 +5,52 @@
 /* CONSTANTES */
 /************************************************************** */
 
-const base_url = "http://lifap5.univ-lyon1.fr/";
+const api_header = 'X-API-KEY';
+const api_key_value = 'ad1939d50a6138a47ba4';
+let headers = new Headers();
+headers.set(api_header, api_key_value);
+
+const base_url = "localhost:8888";
 const local_todos = "./Projet-2018-todos.json";
 const local_users = "./Projet-2018-users.json";
 
+const url = 'http://localhost:8888/index.php/todos/';
 
+const mon_todo = {
+    'title': 'un nouveau todo',
+    'desc': "Description du nouveau todo",
+    'people': []
+};
+
+const data = JSON.stringify(mon_todo);
+
+fetch(url, { method: 'GET', headers: headers})
+    .then(function(response) {
+        console.log("hey");
+        if (response.ok) {
+
+            return response.json();
+        } else {
+            console.log(`Erreur dans la requête ${url}: ${response.code}`);
+            throw("Erreur lors de la requête sur le serveur");
+        }
+    })
+    .then(function(todoEnJson) {
+        // faireQuelqueChoseAvecLesDonnees(todoEnJson);
+        console.log(todoEnJson);
+
+        // todoEnJson = JSON.parse(result);
+        $("#todo1").text(todoEnJson[0]["title"]);
+
+
+    });
+
+function import_json(result)
+{
+
+    $("#todo1").text(result["title"]);
+
+}
 ////////////////////////////////////////////////////////////////////////////////
 // ETAT : classe d'objet pour gérer l'état courant de l'application
 ////////////////////////////////////////////////////////////////////////////////
@@ -43,20 +84,150 @@ function State(users = [], todos = [], filters = [], sort = "NONE"){
 ////////////////////////////////////////////////////////////////////////////////
 // OUTILS : fonctions outils, manipulation et filtrage de TODOs
 ////////////////////////////////////////////////////////////////////////////////
+let first_click=true;
+function showTodo()
+{
+	if(first_click===true)
+	{
+		document.getElementById("DoingId").style.visibility="collapse";
+		document.getElementById("DoneId").style.visibility="collapse";
+		first_click=false;
+	}
+	else
+	{
+		document.getElementById("DoingId").style.visibility="visible";
+		document.getElementById("DoneId").style.visibility="visible";
+		first_click=true;
+	}
+}
+let first_click2=true;
+function showDoing()
+{
+	if(first_click2===true)
+	{
+		document.getElementById("TodoId").style.visibility="collapse";
+		document.getElementById("DoneId").style.visibility="collapse";
+		first_click2=false;
+	}
+	else
+	{
+		document.getElementById("TodoId").style.visibility="visible";
+		document.getElementById("DoneId").style.visibility="visible";
+		first_click2=true;
+	}
+}
+let first_click3=true;
+function showDone()
+{
+	if(first_click3===true)
+	{
+		document.getElementById("TodoId").style.visibility="collapse";
+		document.getElementById("DoingId").style.visibility="collapse";
+		first_click3=false;
+	}
+	else
+	{
+		document.getElementById("TodoId").style.visibility="visible";
+		document.getElementById("DoingId").style.visibility="visible";
+		first_click3=true;
+	}
+}
+
+function addFunction() {
+        let liste= document.createElement("li");
+        let div = document.createElement("div");
+        let div2 = document.createElement("div");
+        let p1 =document.createElement("p");
+        let p2 =document.createElement("p");
+        let p3 =document.createElement("p");
+        let test="list";
+    		test +=document.getElementById("upload-state").value;
+        let id=document.getElementById(test).getElementsByTagName("li").length+1;
+        liste.className="list-group-item";
+		    liste.innerHTML=document.getElementById("upload-desc").value;
+		    div.className="item-option";
+        let divid="collapse"
+        divid+=id;
+        divid+=document.getElementById("upload-state").value;
+        div2.id=divid;
+        div2.className="panel-collapse collapse";
+        div2.setAttribute("role","tabpanel");
+        div2.setAttribute("aria-labelledby","headingTwo");
+        p1.innerHTML=document.getElementById("upload-mentioned").value;
+        p2.innerHTML=document.getElementById("upload-deadline").value;
+        p3.innerHTML=document.getElementById("upload-state").value;
+        div2.appendChild(p1);
+        div2.appendChild(p2);
+        div2.appendChild(p3);
+        div.innerHTML = "<a role=\"button\" class=\"nav-link\" data-toggle=\"collapse\" href=\"#"+divid+"\" aria-expanded=\"true\" aria-controls="+divid+" class=\"trigger collapsed\"><i class=\"fal fa-arrows-alt\"></i></a><a role=\"button\" onclick=\"editTodo(this)\" data-toggle=\"modal\" data-target=\"#modifieModal\"><i class=\"fas fa-edit\"></i></a><a role=\"button\" class=\"nav-link\" onclick='DeleteTodo(this,this.parentNode.parentNode.parentNode.id)'><i class=\"fas fa-trash-alt\"></i></a>"
+        div.appendChild(div2);
+        liste.appendChild(div);
+        document.getElementById(test).appendChild(liste);
+}
+
+function DeleteTodo(test,frome){
+	document.getElementById(frome).removeChild(test.parentNode.parentNode);
+}
+
+let donnee;
+function editTodo(test){
+		    document.getElementById("upload-desc2").value = test.parentNode.parentNode.innerHTML.split('<',1)[0];
+        document.getElementById("upload-mentioned2").value = test.parentNode.childNodes[3].childNodes[0].innerHTML;
+        document.getElementById("upload-deadline2").value = test.parentNode.childNodes[3].childNodes[1].innerHTML;
+        document.getElementById("upload-state2").value = test.parentNode.childNodes[3].childNodes[2].innerHTML;
+        donnee = test;
+}
+
+
+function valide()
+{
+  if(donnee.parentNode.childNodes[3].childNodes[2].innerHTML==document.getElementById("upload-state2").value)
+  {
+    donnee.parentNode.childNodes[3].childNodes[0].innerHTML=document.getElementById("upload-mentioned2").value;
+    donnee.parentNode.childNodes[3].childNodes[1].innerHTML=document.getElementById("upload-deadline2").value;
+    donnee.parentNode.childNodes[3].childNodes[2].innerHTML=document.getElementById("upload-state2").value ;
+    donnee.parentNode.parentNode.innerHTML=document.getElementById("upload-desc2").value+'<div class="item-option"><a role="button"'+donnee.parentNode.parentNode.innerHTML.split('<div class="item-option"><a role="button"',2)[1];
+  }
+  else{
+    let liste= document.createElement("li");
+    let div = document.createElement("div");
+    let div2 = document.createElement("div");
+    let p1 =document.createElement("p");
+    let p2 =document.createElement("p");
+    let p3 =document.createElement("p");
+    let test="list";
+    test +=document.getElementById("upload-state2").value;
+    let id=document.getElementById(test).getElementsByTagName("li").length+1;
+    liste.className="list-group-item";
+    liste.innerHTML=document.getElementById("upload-desc2").value;
+    div.className="item-option";
+    let divid="collapse"
+    divid+=id;
+    divid+=document.getElementById("upload-state2").value;
+    div2.id=divid;
+    div2.className="panel-collapse collapse";
+    div2.setAttribute("role","tabpanel");
+    div2.setAttribute("aria-labelledby","headingTwo");
+    p1.innerHTML=document.getElementById("upload-mentioned2").value;
+    p2.innerHTML=document.getElementById("upload-deadline2").value;
+    p3.innerHTML=document.getElementById("upload-state2").value;
+    div2.appendChild(p1);
+    div2.appendChild(p2);
+    div2.appendChild(p3);
+    div.innerHTML = "<a role=\"button\" class=\"nav-link\" data-toggle=\"collapse\" href=\"#"+divid+"\" aria-expanded=\"true\" aria-controls="+divid+" class=\"trigger collapsed\"><i class=\"fal fa-arrows-alt\"></i></a><a role=\"button\" onclick=\"editTodo(this)\" data-toggle=\"modal\" data-target=\"#modifieModal\"><i class=\"fas fa-edit\"></i></a><a role=\"button\" class=\"nav-link\" onclick='DeleteTodo(this,this.parentNode.parentNode.parentNode.id)'><i class=\"fas fa-trash-alt\"></i></a>"
+    div.appendChild(div2);
+    liste.appendChild(div);
+    document.getElementById(test).appendChild(liste);
+    DeleteTodo(donnee,donnee.parentNode.parentNode.parentNode.id);
+  }
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////
 // RENDU : fonctions génération de HTML à partir des données JSON
 ////////////////////////////////////////////////////////////////////////////////
-function charge_data()
-{
-  get_local_todos()
-  .then((result) => {
-    result = JSON.parse(result);
-    console.log(result[0]);
-    $("#todo1").text(result[0]["title"]);
-  });
-}
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // HANDLERS : gestion des évenements de l'utilisateur dans l'interface HTML
@@ -66,7 +237,7 @@ function charge_data()
 ////////////////////////////////////////////////////////////////////////////////
 // FETCH Fonction permettant de charger des données asynchrones
 ////////////////////////////////////////////////////////////////////////////////
-function get_local_todos() {
+/*function get_local_todos() {
   return fetch(local_todos)
     .then(response => response.text())
 }
@@ -76,11 +247,21 @@ function get_local_users() {
     .then(response => response.text())
 }
 
+function import_json()
+{
+  get_local_todos()
+  .then((result) => {
+    result = JSON.parse(result);
+    console.log(result);
+    $("#todo1").text(result[0]["title"]);
+  });
+}
+import_json();*/
 
 /************************************************************** */
 /** MAIN PROGRAM */
 /************************************************************** */
-document.addEventListener('DOMContentLoaded', function(){
+/*document.addEventListener('DOMContentLoaded', function(){
   let state = {};
 
   // garde pour ne pas exécuter dans la page des tests unitaires.
@@ -94,4 +275,4 @@ document.addEventListener('DOMContentLoaded', function(){
     .then(todos => console.log(todos))
     .catch(reason => console.error(reason));
   }
-}, false);
+// }, false);*/

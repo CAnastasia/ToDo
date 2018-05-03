@@ -39,7 +39,7 @@
     "createdBy" : "romuald",
     "people" : ["nicolas"]
   },
-  { 
+  {
     "_id" : "4",
     "deadline" : "2018-04-14",
     "creation" : "2018-02-26",
@@ -80,7 +80,3 @@
     "people" : ["romuald"]
   }
 ]
-
-
-
-
