@@ -38,17 +38,20 @@ fetch(url, { method: 'GET', headers: headers})
     .then(function(todoEnJson) {
         // faireQuelqueChoseAvecLesDonnees(todoEnJson);
         console.log(todoEnJson);
-
+        import_json(todoEnJson);
         // todoEnJson = JSON.parse(result);
-        $("#todo1").text(todoEnJson[0]["title"]);
+       // $("#todo1").text(todoEnJson[0]["title"]);
 
 
     });
 
-function import_json(result)
+function import_json(todoEnJson)
 {
+    $('#listTodo  li:nth-child(1)').text(todoEnJson.map(function (val) { // noinspection JSAnnotator
+        return Object.values(val);
+    }));
 
-    $("#todo1").text(result["title"]);
+    console.log(todoEnJson);
 
 }
 ////////////////////////////////////////////////////////////////////////////////
