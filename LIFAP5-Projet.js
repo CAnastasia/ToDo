@@ -47,7 +47,11 @@ fetch(url, { method: 'GET', headers: headers})
 
 function import_json(todoEnJson)
 {
-    $('#listTodo  li:nth-child(1)').text(todoEnJson.map(function (val) { // noinspection JSAnnotator
+    var length_ul = document.getElementById('listTodo').getElementsByTagName('LI').length;
+    console.log(length_ul);
+    console.log(document.getElementById('listTodo').getElementsByTagName('LI')[length_ul-1].innerHTML);
+    document.getElementById('listTodo').getElementsByTagName('LI')[length_ul-1].innerHTML =
+        (todoEnJson.map(function (val) {
         return Object.values(val);
     }));
 
