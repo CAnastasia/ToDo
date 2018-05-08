@@ -38,26 +38,28 @@ fetch(url, { method: 'GET', headers: headers})
     .then(function(todoEnJson) {
         // faireQuelqueChoseAvecLesDonnees(todoEnJson);
         console.log(todoEnJson);
-        import_json(todoEnJson);
-        // todoEnJson = JSON.parse(result);
-       // $("#todo1").text(todoEnJson[0]["title"]);
+        todoEnJson.map(showContent);
 
 
     });
 
-function import_json(todoEnJson)
-{
-    var length_ul = document.getElementById('listTodo').getElementsByTagName('LI').length;
-    console.log(length_ul);
-    console.log(document.getElementById('listTodo').getElementsByTagName('LI')[length_ul-1].innerHTML);
-    document.getElementById('listTodo').getElementsByTagName('LI')[length_ul-1].innerHTML =
-        (todoEnJson.map(function (val) {
-        return Object.values(val);
-    }));
 
-    console.log(todoEnJson);
+function showContent(todoEnJson) {
+    let temp = document.getElementsByTagName("template")[0];
+    console.log(temp.content.querySelector('li'));
+    temp.content.querySelector('li .content').innerHTML = todoEnJson['title'];
+    temp.content.querySelector('li div div').id = todoEnJson['_id'];
+    temp.content.querySelector('.expend').href = "#"+todoEnJson['_id'];
+    temp.content.querySelector('#desc').innerHTML = todoEnJson['desc'];
+    temp.content.querySelector('#deadline').innerHTML = todoEnJson['deadline'];
+    temp.content.querySelector('#people').innerHTML = todoEnJson['people'];
+
+    let clon = temp.content.cloneNode(true);
+    document.getElementById(todoEnJson['status']).appendChild(clon);
 
 }
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // ETAT : classe d'objet pour gérer l'état courant de l'application
 ////////////////////////////////////////////////////////////////////////////////
@@ -91,53 +93,41 @@ function State(users = [], todos = [], filters = [], sort = "NONE"){
 ////////////////////////////////////////////////////////////////////////////////
 // OUTILS : fonctions outils, manipulation et filtrage de TODOs
 ////////////////////////////////////////////////////////////////////////////////
-let first_click=true;
+
+
 function showTodo()
 {
-	if(first_click===true)
-	{
-		document.getElementById("DoingId").style.visibility="collapse";
-		document.getElementById("DoneId").style.visibility="collapse";
-		first_click=false;
-	}
-	else
-	{
-		document.getElementById("DoingId").style.visibility="visible";
-		document.getElementById("DoneId").style.visibility="visible";
-		first_click=true;
-	}
+        if(document.getElementById("TodoId").style.visibility=="visible") {
+            document.getElementById("TodoId").style.visibility = "collapse";
+            document.getElementById("butontodo").style.color = "grey";
+        }
+        else {
+            document.getElementById("TodoId").style.visibility = "visible";
+            document.getElementById("butontodo").style.color = "red";
+        }
 }
-let first_click2=true;
 function showDoing()
 {
-	if(first_click2===true)
-	{
-		document.getElementById("TodoId").style.visibility="collapse";
-		document.getElementById("DoneId").style.visibility="collapse";
-		first_click2=false;
-	}
-	else
-	{
-		document.getElementById("TodoId").style.visibility="visible";
-		document.getElementById("DoneId").style.visibility="visible";
-		first_click2=true;
-	}
+
+    if(document.getElementById("DoingId").style.visibility=="visible") {
+        document.getElementById("DoingId").style.visibility = "collapse";
+        document.getElementById("butondoing").style.color = "grey";
+    }
+    else {
+        document.getElementById("DoingId").style.visibility = "visible";
+        document.getElementById("butondoing").style.color = "red";
+    }
 }
-let first_click3=true;
 function showDone()
 {
-	if(first_click3===true)
-	{
-		document.getElementById("TodoId").style.visibility="collapse";
-		document.getElementById("DoingId").style.visibility="collapse";
-		first_click3=false;
-	}
-	else
-	{
-		document.getElementById("TodoId").style.visibility="visible";
-		document.getElementById("DoingId").style.visibility="visible";
-		first_click3=true;
-	}
+    if(document.getElementById("DoneId").style.visibility=="visible") {
+        document.getElementById("DoneId").style.visibility = "collapse";
+        document.getElementById("butondone").style.color = "grey";
+    }
+    else {
+        document.getElementById("DoneId").style.visibility = "visible";
+        document.getElementById("butondone").style.color = "red";
+    }
 }
 
 function addFunction() {

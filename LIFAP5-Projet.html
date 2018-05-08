@@ -22,6 +22,21 @@
   <script src="./LIFAP5-Projet.js" type="text/javascript"></script>
 </head>
 <body>
+<template>
+	<li  class="list-group-item">
+		<div class="content"></div>
+		<div class="item-option">
+			<a role="button"  class="nav-link expend" data-toggle="collapse" href="#collapsetree" aria-expanded="true" aria-controls="collapsetree" class="trigger collapsed"><i class="fal fa-arrows-alt"></i></a>
+			<a role="button" class="nav-link" onclick='editTodo()'><i class="fas fa-edit"></i></a>
+			<a role="button" class="nav-link" onclick='DeleteTodo()'><i class="fas fa-trash-alt"></i></a>
+			<div id="collapsetree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+				<p id="desc">test</p>
+				<p id="deadline">test</p>
+				<p id="people" style="width: 370px; height: 27px; overflow-y: scroll;">test</p>
+			</div>
+		</div>
+	</li>
+</template>
 <!--<nav class="navbar  navbar-fixed-left">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -94,11 +109,11 @@
           </div>
           <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
-            <a role="button" class="nav-link" onclick='showTodo()'>
+            <a id="butontodo" role="button" class="nav-link" onclick='showTodo()'>
 					<div class=" btn-lg"><span class="glyphicon glyphicon-bookmark"></span><p> Todo </p></div></a>
-			<a role="button" class="nav-link" onclick="showDoing()">
+			<a id="butondoing" role="button" class="nav-link" onclick="showDoing()">
 					<div class=" btn-lg"><span class="glyphicon glyphicon-refresh"></span><p> Doing </div></a>
-			<a role="button" class="nav-link" onclick="showDone()">
+			<a id="butondone" role="button" class="nav-link" onclick="showDone()">
 					<div class=" btn-lg"><span class="glyphicon glyphicon-check"></span><p> Done </div></a>
 			</div>
           </div>
@@ -239,9 +254,9 @@
                     <div class="form-group">
 						<label for="upload-state2">State:</label>
 						<select class="form-control" id="upload-state2" >
-						<option value="Todo">Todo</option>
-						<option value="Doing">Doing</option>
-						<option value="Done">Done</option>
+						<option value="TODO">Todo</option>
+						<option value="DOING">Doing</option>
+						<option value="DONE">Done</option>
 						</select>
                     </div>
                   </div>
@@ -260,7 +275,7 @@
 			<div class="col-md-3">
 			  <div class="todos">
 				<div class="titile_todo"><p>TO DO</p></div>
-				<ul id="listTodo" class="list-group">
+				<ul id="TODO" class="list-group">
 				  <li  class="list-group-item">Cras justo odio
 					<div class="item-option">
 					  <a role="button"  class="nav-link" data-toggle="collapse" href="#collapsetree" aria-expanded="true" aria-controls="collapsetree" class="trigger collapsed"><i class="fal fa-arrows-alt"></i></a>
@@ -272,7 +287,8 @@
 					  </div>
 					</div>
 				  </li>
-				  <li class="list-group-item">Dapibus ac facilisis in
+
+				 <!-- <li class="list-group-item">Dapibus ac facilisis in
 					<div class="item-option">
 					  <a role="button" class="nav-link" onclick='informtodo'><i class="fal fa-arrows-alt"></i></a>
 					  <a role="button" class="nav-link" onclick='editTodo()'><i class="fas fa-edit"></i></a>
@@ -299,7 +315,7 @@
 					  <a role="button" class="nav-link" onclick='editTodo()'><i class="fas fa-edit"></i></a>
 					  <a role="button" class="nav-link" onclick='DeleteTodo()'><i class="fas fa-trash-alt"></i></a>
 					</div>
-				  </li>
+				  </li>-->
 				</ul>
 			</div>
 		  </div>
@@ -308,7 +324,7 @@
 			<div class="col-md-3">
 				  <div class="todos">
 					<div class="titile_todo"><p>IN PROGRESS</p></div>
-					<ul id="listDoing" class="list-group">
+					<ul id="DOING" class="list-group">
 					  <li class="list-group-item">Cras justo odio
 						<div class="item-option">
 							<a role="button" class="nav-link" onclick='informtodo'><i class="fal fa-arrows-alt"></i></a>
@@ -352,7 +368,7 @@
 				<div class="col-md-3">
 				  <div class="todos">
 					<div class="titile_todo"><p>DONE</p></div>
-					<ul id="listDone" class="list-group">
+					<ul id="DONE" class="list-group">
 					  <li class="list-group-item">Cras justo odio
 						<div class="item-option">
 						  <i class="fal fa-arrows-alt"></i>
