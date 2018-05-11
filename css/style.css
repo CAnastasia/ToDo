@@ -4,6 +4,41 @@ font-family: fontawesome !important;
   font-style: normal;
   color: #243759;
 }
+#nom_user
+{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#people a
+{
+    color: #293A5E;
+    font-size: 17px;
+}
+.close_popup
+{
+    position: absolute;
+    top: -6px;
+    right: -7px;
+}
+
+#popup_id {
+    display: none;
+    background: linear-gradient(#F9DCB0, #F5D7B1,#EDCFAD,#D7BBA5,#CEB1A1,#BB9F9B,#AC9293,#AB8E93);
+    position:absolute;
+    left:50%;
+    margin-left:-25px;
+    z-index: 2;
+    color: #3D565B;
+    top:30%;
+    padding: 40px;
+    text-align: center;
+    border-radius: 3px;
+}
+#popup_id img
+{
+    margin-bottom: 16px;
+}
 
 .btn-lg p
 {
@@ -66,6 +101,7 @@ a.nav-link:hover  p, a.nav-link:hover  i
   height: 30px;
   margin-bottom: 15px;
 }
+
 #second-menu
 {
   background-color: #F1F3F5;
