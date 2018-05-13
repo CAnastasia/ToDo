@@ -315,6 +315,27 @@ function valide()
   })
 }
 
+function search()
+{
+  Array.prototype.map.call($(".list-group-item"),function(elem){
+    elem.innerHTML=elem.innerHTML.replace(new RegExp("<span id=\"value_replace\">",'gim'),"");
+    elem.innerHTML=elem.innerHTML.replace(new RegExp("</span>",'gim'),"");
+    console.log(elem.childNodes);
+    if(elem.innerHTML.search(new RegExp(document.getElementById('search').value,'gim')) != -1)
+    {
+      elem.style.display="block";
+      elem.innerHTML=elem.innerHTML.replace(new RegExp(document.getElementById('search').value,'gim'),"<span id='value_replace'>"+document.getElementById('search').value+"</span>");
+      elem.innerHTML=elem.innerHTML.replace(new RegExp("35px; (.*): scroll;",'gim'),"35px; overflow-y: scroll;");
+      elem.innerHTML=elem.innerHTML.replace(new RegExp("35px; (.*): scroll;",'gim'),"35px; overflow-y: scroll;");
+
+    }
+    else
+    {
+      elem.style.display="none";
+    }
+  });
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // RENDU : fonctions génération de HTML à partir des données JSON
 ////////////////////////////////////////////////////////////////////////////////
